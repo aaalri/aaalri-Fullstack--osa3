@@ -43,9 +43,9 @@ app.post('/api/persons', (request, response) => {
     //    })
     //}
 
-    Person.findById(request.params.id).then(person => {
-        response.json(person)
-    })
+    //Person.findById(request.params.id).then(person => {
+    //    response.json(person)
+    //})
 
     const person = new Person ({
         name: body.name,
