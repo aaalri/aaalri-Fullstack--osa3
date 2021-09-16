@@ -21,10 +21,6 @@ morgan.token('post-data', function (req, res) {
 app.get('/info', (req, res) => {
     res.send(`<p>Phonebook has info for ${persons.length} people</p> <p>${new Date()}</p>`)
 })
-
-const generateId = () => {
-    return Math.floor(Math.random() * 999999) + 1
-}
   
 app.post('/api/persons', (request, response) => {
     const body = request.body
@@ -41,11 +37,15 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    if (persons.map(person => person.name).includes(body.name)) {
-        return response.status(400).json({ 
-            error: 'name must be unique' 
-        })
-    }
+    //if (persons.map(person => person.name).includes(body.name)) {
+    //    return response.status(400).json({ 
+    //        error: 'name must be unique' 
+    //    })
+    //}
+
+    Person.findById(request.params.id).then(person => {
+        response.json(person)
+    })
 
     const person = new Person ({
         name: body.name,
