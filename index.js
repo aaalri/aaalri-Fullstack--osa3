@@ -50,10 +50,9 @@ app.post('/api/persons', (request, response) => {
     const person = new Person ({
         name: body.name,
         number: body.number,
-        id: generateId(),
     })
 
-    note.save().then(person => {
+    person.save().then(person => {
         response.json(person)
     })
     
